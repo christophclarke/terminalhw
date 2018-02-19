@@ -6,7 +6,7 @@ public class Semester {
 
     private int year;
 
-    private ArrayList<Course> classList = new ArrayList<>();
+    private ArrayList<Course> courseList = new ArrayList<>();
 
 
     //term 0 indicates spring, 1 indicates fall
@@ -29,11 +29,11 @@ public class Semester {
 
     //ArrayList of course objects
     public ArrayList<Course> getClassList() {
-        return classList;
+        return courseList;
     }
 
     public void setClassList(ArrayList<Course> classList) {
-        this.classList = classList;
+        this.courseList = classList;
     }
 
     //New semester constructor, must pass year and term
@@ -44,17 +44,17 @@ public class Semester {
 
     //Method to add course to semester's course list
     public void addCourse(Course addedCourse) {
-        classList.add(addedCourse);
+        courseList.add(addedCourse);
     }
 
     //returns true if element exists and was removed, else false
     public boolean removeCourse(Course removedCourse) {
-        return classList.remove(removedCourse);
+        return courseList.remove(removedCourse);
     }
 
     //returns "Semester{Year: {year}, Term: {term}, {classList.toString()}}"
     @Override
     public String toString() {
-        return "Semester{Year: " + this.year + ", Term: " + this.term + ", " + classList.toString() + "}";
+        return "Semester{Year: " + this.year + ", Term: " + this.term + ", " + courseList.toString() + "}";
     }
 }
