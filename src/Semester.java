@@ -36,5 +36,25 @@ public class Semester {
         this.classList = classList;
     }
 
+    //New semester constructor, must pass year and term
+    public Semester(int termIn, int yearIn) {
+        this.term = termIn;
+        this.year = yearIn;
+    }
 
+    //Method to add course to semester's course list
+    public void addCourse(Course addedCourse) {
+        classList.add(addedCourse);
+    }
+
+    //returns true if element exists and was removed, else false
+    public boolean removeCourse(Course removedCourse) {
+        return classList.remove(removedCourse);
+    }
+
+    //returns "Semester{Year: {year}, Term: {term}, {classList.toString()}}"
+    @Override
+    public String toString() {
+        return "Semester{Year: " + this.year + ", Term: " + this.term + ", " + classList.toString() + "}";
+    }
 }
