@@ -60,4 +60,11 @@ class Course {
     public boolean removeAssignment(Assignment removedAssignment) {
         return assignmentList.remove(removedAssignment);
     }
+
+    //returns "Course{{dept} {courseNbr} | Exams: {examList.toString()}, Assignments: {assignmentList.toString()}}"
+    @Override
+    public String toString() {
+        return "Course{" + this.department + " " + this.courseNumber + " | " +
+                "Exams: " + examList.toString() + ", Assignments: " + assignmentList.toString() + "}";
+    }
 }
