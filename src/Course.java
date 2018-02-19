@@ -4,8 +4,8 @@ class Course {
 
     private String department;
     private int courseNumber;
-    ArrayList<Test> testList = new ArrayList<>();
-    ArrayList<Assignment> assignmentList = new ArrayList<>();
+    private ArrayList<Exam> examList = new ArrayList<>();
+    private ArrayList<Assignment> assignmentList = new ArrayList<>();
 
     public String getDepartment() {
         return department;
@@ -23,12 +23,12 @@ class Course {
         this.courseNumber = courseNumber;
     }
 
-    public ArrayList<Test> getTestList() {
-        return testList;
+    public ArrayList<Exam> getExamList() {
+        return examList;
     }
 
-    public void setTestList(ArrayList<Test> testList) {
-        this.testList = testList;
+    public void setTestList(ArrayList<Exam> testList) {
+        this.examList = testList;
     }
 
     public ArrayList<Assignment> getAssignmentList() {
@@ -39,4 +39,25 @@ class Course {
         this.assignmentList = assignmentList;
     }
 
+    public Course(String dept, int courseNbr) {
+        this.department = dept;
+        this.courseNumber = courseNbr;
+    }
+
+    public void addExam(Exam addedExam) {
+        examList.add(addedExam);
+    }
+
+    //returns true if exam exists and is removed, else false
+    public boolean removeExam(Exam removedExam) {
+        return examList.remove(removedExam);
+    }
+
+    public void addAssignment(Assignment addedAssignment) {
+        assignmentList.add(addedAssignment);
+    }
+
+    public boolean removeAssignment(Assignment removedAssignment) {
+        return assignmentList.remove(removedAssignment);
+    }
 }
