@@ -1,4 +1,4 @@
-public class Test {
+public class Exam {
 
     private Course course;
     private String date;
