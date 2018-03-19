@@ -41,6 +41,7 @@ public class Directory {
                 case "n":
                     console.format("Must initialize directory to continue, respond with 'y' to continue, or 'quit' to quit%n%n");
                     break;
+                case "q":
                 case "quit":
                     console.format("Hope to see you soon!%n%n");
                     System.exit(0);
