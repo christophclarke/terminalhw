@@ -1,6 +1,8 @@
 package objects;
 
-public class Exam {
+import java.io.Serializable;
+
+public class Exam implements Serializable {
 
     private Course course;
     private String date;

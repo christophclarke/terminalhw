@@ -1,6 +1,8 @@
 package objects;
 
-public class Assignment {
+import java.io.Serializable;
+
+public class Assignment implements Serializable {
 
     private Course course;
     private int dueDate;
