@@ -12,10 +12,10 @@ public class Student implements Serializable {
 
     public Student(Console console) {
 
-        console.format("--- Creating Student ---%n");
-        this.firstName = console.readLine("First Name > %n");
-        this.lastName = console.readLine("Last Name > %n");
-        console.format("--- Student Initialized ---%n");
+        console.format("%n--- Creating Student ---");
+        this.firstName = console.readLine("%n%nFirst Name > ");
+        this.lastName = console.readLine("%nLast Name > ");
+        console.format("%n%n--- Student Initialized ---%n%n");
 
     }
 

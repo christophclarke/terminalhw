@@ -11,10 +11,12 @@ public class Directory {
 
         boolean loop = true;
 
+        console.format("%nLooks like this is your first time; ");
+
         while (loop) {
 
             //Prompt user to initialize
-            switch (console.readLine("Looks like this is your first time, would you like to initialize? (y/n/quit) >")) {
+            switch (console.readLine("Would you like to initialize? (y/n/quit) > ")) {
 
                 // if user gives positive response
                 case "y":
@@ -23,7 +25,7 @@ public class Directory {
                     try {
                         rootDir.mkdirs();
                     } catch (SecurityException se) {
-                        System.err.println("Security Exception -> Check write permissions");
+                        System.err.println("%n%nSecurity Exception -> Check write permissions");
                         System.exit(77);
                     }
 
@@ -31,18 +33,20 @@ public class Directory {
                     if (rootDir.exists()) {
                         Student currentStudent = new Student(console);
                         ObjectPersistance.saveStudent(currentStudent, rootDir);
-
+                        loop = false;
+                        break;
                     }
 
                 //if negative response given, prompt user to respond positively or quit
                 case "n":
-                    console.format("Must initialize directory to continue, respond with 'quit' to quit");
+                    console.format("Must initialize directory to continue, respond with 'y' to continue, or 'quit' to quit%n%n");
+                    break;
                 case "quit":
-                    console.format("Hope to see you soon");
+                    console.format("Hope to see you soon!%n%n");
                     System.exit(0);
-
                 default:
-                    console.format("Response not recognized, must initialize directory to continue");
+                    console.format("Response not recognized, must initialize directory to continue%n%n");
+                    break;
             }
         }
     }

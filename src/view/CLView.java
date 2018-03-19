@@ -20,7 +20,7 @@ public class CLView {
             System.exit(1);
         }
 
-        console.printf("Hello \u001B[31m%s\u001B[0m, welcome to termhw!\n", System.getProperty("user.name"));
+        console.printf("Hello \u001B[31m%s\u001B[0m, welcome to termhw!%n", System.getProperty("user.name"));
 
         File rootDir = new File(System.getProperty("user.home") + "/.hwdata/");
 
