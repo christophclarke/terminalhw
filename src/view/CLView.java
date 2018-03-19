@@ -30,16 +30,27 @@ public class CLView {
 
         }
 
-//        switch (console.readLine("Select Student")) ;
+        console.format("╞═════════════════ Student List ═════════════════╡%n");
+        String[] studentList = rootDir.list();
+        for (String file : studentList) {
+            console.format("%" + (25 + file.length()/2) + "s%n", file);
+        }
+
+//        switch (console.readLine("Select Student"));
 //
-//        while (true) {
+//        boolean loop = true;
+//
+//        while (loop) {
 //
 //            String input = console.readLine("How can I help?");
 //
 //            switch (input.toLowerCase()) {
 //                case "show":
 //
-//
+//                case "help":
+//                    console.format("%n%n<<this is an interactive terminal application>>%n%n");
+//                    console.format("commands: %n%n");
+//                    console.format("    'show': shows data within current object");
 //            }
 //
 //        }
