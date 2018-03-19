@@ -17,3 +17,7 @@
 *.zip
 *.tar.gz
 *.rar
+
+# IntelliJ #
+.idea/
+*.iml
