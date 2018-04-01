@@ -1,16 +1,26 @@
 package objects;
 
+import java.io.Console;
 import java.io.Serializable;
+import java.io.StringWriter;
 import java.util.ArrayList;
 
-public class Semester implements Serializable {
+public class Semester implements Serializable, Renderable {
 
     private int term;
 
     private int year;
 
+    private String displayName;
+
     private ArrayList<Course> courseList = new ArrayList<>();
 
+    //New semester constructor, must pass year and term
+    public Semester(int termIn, int yearIn) {
+        this.term = termIn;
+        this.year = yearIn;
+        this.toDisplayName();
+    }
 
     //term 0 indicates spring, 1 indicates fall
     public int getTerm() {
@@ -39,12 +49,6 @@ public class Semester implements Serializable {
         this.courseList = classList;
     }
 
-    //New semester constructor, must pass year and term
-    public Semester(int termIn, int yearIn) {
-        this.term = termIn;
-        this.year = yearIn;
-    }
-
     //Method to add course to semester's course list
     public void addCourse(Course addedCourse) {
         courseList.add(addedCourse);
@@ -56,8 +60,25 @@ public class Semester implements Serializable {
     }
 
     //returns "Semester{Year: {year}, Term: {term}, {classList.toString()}}"
+
+    String toDisplayName() {
+        StringWriter sw = new StringWriter();
+        switch (term) {
+            case 0: sw.append("Spring"); break;
+            case 1: sw.append("Fall"); break;
+        }
+        sw.append(Integer.toString(year));
+        return sw.toString();
+
+    }
+
     @Override
-    public String toString() {
-        return "Semester{Year: " + this.year + ", Term: " + this.term + ", " + courseList.toString() + "}";
+    public ArrayList getObjList() {
+        return courseList;
+    }
+
+    @Override
+    public String getDisplayName() {
+        return displayName;
     }
 }

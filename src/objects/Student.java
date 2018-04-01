@@ -4,10 +4,11 @@ import java.io.Console;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Student implements Serializable {
+public class Student implements Serializable, Renderable {
 
     private String firstName;
     private String lastName;
+    private String displayName;
     private ArrayList<Semester> semesterList = new ArrayList<>();
 
     public Student(Console console) {
@@ -16,6 +17,7 @@ public class Student implements Serializable {
         this.firstName = console.readLine("First Name > ");
         this.lastName = console.readLine("Last Name > ");
         console.format("--- Student Initialized ---%n%n");
+        this.displayName = this.firstName + "_" + this.lastName;
 
     }
 
@@ -35,8 +37,13 @@ public class Student implements Serializable {
         this.lastName = lastName;
     }
 
-    public ArrayList<Semester> getSemesterList() {
+    public ArrayList<Renderable> getObjList() {
         return semesterList;
+    }
+
+    @Override
+    public String getDisplayName() {
+        return displayName;
     }
 
     public void setSemesterList(ArrayList<Semester> semesterList) {
@@ -49,6 +56,9 @@ public class Student implements Serializable {
 
     }
 
-
+    @Override
+    public String toString() {
+        return firstName + " " + lastName;
+    }
 
 }

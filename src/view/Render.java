@@ -1,34 +1,23 @@
 package view;
 
-import objects.Semester;
-import objects.Student;
+import objects.Renderable;
 
 import java.io.Console;
 
-public class Render {
+class Render {
 
-    void printSemesters(Console c, Student student) {
+    static void render(Console console, Renderable obj) {
 
-        String leftAlign = "| %-4d | %-6s | %-7d |%n";
+        String objType = obj.getClass().getName();
 
-        c.format("+------+--------+---------+%n");
-        c.format("| Year | Season | Classes |%n");
-        c.format("+------+--------+---------+%n");
+        console.format("╞═════════════════ %s Contains ═════════════════╡%n", obj.toString());
+        for (Renderable listObject : obj.getObjList()) {
 
-        for (Semester sem : student.getSemesterList()) {
-
-            String semesterString = "debug";
-
-            switch (sem.getTerm()){
-                case 0: semesterString = "Spring";
-                case 1: semesterString = "Fall";
-            }
-
-            c.format(leftAlign, sem.getYear(), semesterString, sem.getClassList().size());
+            console.format("%" + (25 + listObject.getDisplayName().length()/2) + "s%n", listObject.getDisplayName());
 
         }
 
-        c.format("+------+--------+---------+%n");
+        console.format("%n");
 
     }
 

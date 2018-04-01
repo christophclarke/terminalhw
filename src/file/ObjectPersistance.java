@@ -25,20 +25,17 @@ public class ObjectPersistance {
 
     }
 
-    static Student loadStudent(String studentName, File rootDir) {
+    public static Student loadStudent(String studentName, File rootDir) throws IOException {
 
         //Load correct .student file
         File studentFile = new File(rootDir, studentName + ".student");
 
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(studentFile));
-            Student returnStudent = (Student)ois.readObject();
-            return returnStudent;
+            return (Student)ois.readObject();
         } catch (Exception ex) {
-            System.err.println("------");
-            System.err.println(".student file not found");
-            System.err.println(ex.getStackTrace());
-            return null;
+            throw new IOException();
         }
     }
+
 }

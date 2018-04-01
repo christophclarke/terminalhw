@@ -3,7 +3,7 @@ package objects;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-class Course implements Serializable {
+class Course implements Serializable, Renderable {
 
     private String department;
     private int courseNumber;
@@ -69,5 +69,15 @@ class Course implements Serializable {
     public String toString() {
         return "Course{" + this.department + " " + this.courseNumber + " | " +
                 "Exams: " + examList.toString() + ", Assignments: " + assignmentList.toString() + "}";
+    }
+
+    @Override
+    public ArrayList<Renderable> getObjList() {
+        return null;
+    }
+
+    @Override
+    public String getDisplayName() {
+        return null;
     }
 }
