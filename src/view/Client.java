@@ -15,21 +15,12 @@ class Client {
     private Console console;
     private File rootDir;
 
-    Client(Console consoleIn) {
+    Client(Console consoleIn, File passedDir) {
 
         console = consoleIn;
+        rootDir = passedDir;
 
-        console.printf("Hello \u001B[31m%s\u001B[0m, welcome to termhw!%n", System.getProperty("user.name"));
-
-        rootDir = new File(System.getProperty("user.home") + "/.hwdata/");
-
-        if (!rootDir.exists()) {
-
-            file.Directory.initialize(console, rootDir);
-
-        }
-
-        clientInit();
+        loadStudent();
 
         boolean loop = true;
 
@@ -66,17 +57,6 @@ class Client {
 
     }
 
-    private void clientInit() {
-        console.format("╞═════════════════ Student List ═════════════════╡%n");
-        String[] studentList = rootDir.list();
-        for (String file : studentList) {
-            console.format("%" + (25 + file.length()/2) + "s%n", file);
-        }
-
-        loadStudent();
-
-    }
-
     private void quit() {
         console.format("Hope to see you soon!%n%n");
         System.exit(0);
@@ -88,20 +68,27 @@ class Client {
 
     private void loadStudent() {
 
-        String load = console.readLine("Select Student (full filename): ");
-
-        if (load.toLowerCase().equals("quit")) {
-            quit();
+        console.format("╞═════════════════ Student List ═════════════════╡%n");
+        String[] studentList = rootDir.list();
+        for (String file : studentList) {
+            console.format("%" + (25 + file.length()/2) + "s%n", file);
         }
 
-        //TODO: allows session restoration
-        try {
-            currentObj = ObjectPersistance.loadStudent(load, rootDir);
-        } catch (IOException e) {
-            System.err.println("------");
-            System.err.printf("file not found (%s.student)%n", load);
-            e.printStackTrace();
-            clientInit();
+        while (true) {
+            String load = console.readLine("Select Student (full filename): ");
+
+            if (load.toLowerCase().equals("quit")) {
+                quit();
+            }
+
+            //TODO: allows session restoration
+            try {
+                currentObj = ObjectPersistance.loadStudent(load, rootDir);
+                break;
+            } catch (IOException e) {
+                System.err.println("------");
+                System.err.printf("file not found (%s.student)%n", load);
+            }
         }
     }
 
