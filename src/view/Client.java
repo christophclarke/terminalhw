@@ -7,8 +7,6 @@ import java.io.Console;
 import java.io.File;
 import java.io.IOException;
 
-import static view.Render.render;
-
 class Client {
 
     private Renderable currentObj;
@@ -30,7 +28,7 @@ class Client {
 
             switch (input[0]) {
                 case "show":
-                    render(console, currentObj);
+//                    render(console, currentObj);
                     break;
                 case "open":
 
