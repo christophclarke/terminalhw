@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public interface Renderable {
 
-    ArrayList<Renderable> getObjList();
+    ArrayList<Semester> getObjList();
 
     String getDisplayName();
 

@@ -37,7 +37,7 @@ public class Student implements Serializable, Renderable {
         this.lastName = lastName;
     }
 
-    public ArrayList<Renderable> getObjList() {
+    public ArrayList<Semester> getObjList() {
         return semesterList;
     }
 

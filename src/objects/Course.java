@@ -72,7 +72,7 @@ class Course implements Serializable, Renderable {
     }
 
     @Override
-    public ArrayList<Renderable> getObjList() {
+    public ArrayList<Semester> getObjList() {
         return null;
     }
 
