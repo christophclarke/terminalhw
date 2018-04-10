@@ -1,11 +1,10 @@
 package objects;
 
+import java.io.Console;
 import java.util.ArrayList;
 
 public interface Renderable {
 
-    ArrayList<Semester> getObjList();
-
-    String getDisplayName();
+    void render(Console c);
 
 }

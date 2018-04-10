@@ -11,15 +11,13 @@ public class Semester implements Serializable, Renderable {
 
     private int year;
 
-    private String displayName;
-
-    private ArrayList<Course> courseList = new ArrayList<>();
+    private ArrayList<Course> courseList;
 
     //New semester constructor, must pass year and term
     public Semester(int termIn, int yearIn) {
         this.term = termIn;
         this.year = yearIn;
-        this.toDisplayName();
+        this.courseList = new ArrayList<>();
     }
 
     //term 0 indicates spring, 1 indicates fall
@@ -73,12 +71,7 @@ public class Semester implements Serializable, Renderable {
     }
 
     @Override
-    public ArrayList getObjList() {
-        return courseList;
-    }
+    public void render(Console c) {
 
-    @Override
-    public String getDisplayName() {
-        return displayName;
     }
 }
