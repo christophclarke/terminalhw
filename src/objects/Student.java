@@ -37,7 +37,7 @@ public class Student implements Serializable, Component {
     @Override
     public void render(Console console) {
 
-        console.format("Current Student: %s %s%n%n", firstName, lastName);
+        console.format("Current Student: %s%n%n", toDisplayName());
         console.format("Semesters Saved:");
 
         if (semesterList.isEmpty()) {
