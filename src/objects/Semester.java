@@ -7,6 +7,7 @@ import java.io.Console;
 import java.io.Serializable;
 import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Semester implements Serializable, Component, Comparable<Semester> {
 
@@ -76,32 +77,79 @@ public class Semester implements Serializable, Component, Comparable<Semester> {
     }
 
     @Override
-    public void render(Console c) {
+    public void render(Console console) {
+
+        console.format("Current Student: %s%n", parent.toDisplayName());
+        console.format("Classes saved in %s:", toDisplayName());
+        if (courseList.isEmpty()) {
+            console.format("\u001B[36m No Courses Saved\u001B[0m%n%n");
+        } else {
+            for (Course course : courseList) {
+                console.format("%n├%s", course.toDisplayName());
+            }
+            console.format("%n┘%n%n");
+
+        }
 
     }
 
     @Override
-    public void add(Console console) {
+    public void add(Console console) throws ImproperFormatException {
+
+        courseList.add(new Course(console, this));
+        Collections.sort(courseList);
 
     }
 
     @Override
-    public void add(String arg1, String arg2, Console console) {
+    public void add(String arg1, String arg2, Console console) throws ImproperFormatException {
+        courseList.add(new Course(arg1, arg2, console, this));
+        Collections.sort(courseList);
+    }
+
+    @Override
+    public void remove(Console console) throws ComponentDoesNotExistException, ImproperFormatException {
+
+        console.format("--- Removing Course ---%n");
+        String rmDept = console.readLine("Course Department > ").trim();
+        String rmNum = console.readLine("Course Number > ").trim();
+
+        remove(rmDept, rmNum, console);
 
     }
 
     @Override
-    public void remove(Console console) throws ComponentDoesNotExistException {
+    public void remove(String arg1, String arg2, Console console) throws ComponentDoesNotExistException, ImproperFormatException {
 
+        int rmNum;
+        try {
+            rmNum = Integer.parseInt(arg2);
+        } catch (NumberFormatException nfe) {
+            throw new ImproperFormatException();
+        }
+
+        for (int i = 0; i < courseList.size(); i++) {
+
+            // If a given course department and number match the entered department and number, remove it
+            if (courseList.get(i).getCourseNumber() == rmNum) {
+                if(courseList.get(i).getDepartment().equalsIgnoreCase(arg1)) {
+                    courseList.remove(i);
+                    console.format("--- Semester Removed ---%n");
+                    return;
+                }
+            }
+
+        }
+        throw new ComponentDoesNotExistException();
     }
 
     @Override
-    public void remove(String arg1, String arg2, Console console) throws ComponentDoesNotExistException {
-
+    public Component open(Console console) throws ComponentDoesNotExistException, ImproperFormatException {
+        return null;
     }
 
     @Override
-    public Component open(String arg1, String arg2) {
+    public Component open(String arg1, String arg2) throws ComponentDoesNotExistException, ImproperFormatException {
         return null;
     }
 

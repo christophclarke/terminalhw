@@ -93,11 +93,13 @@ class Client {
                             console.format(ex.toString());
                         }
                     }
+                    currentObj.render(console);
                     break;
 
                 case "out":
 
                     if (currentObj.out() == null) {
+                        save();
                         loadStudent();
                     } else {
                         currentObj = currentObj.out();
