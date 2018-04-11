@@ -43,8 +43,6 @@ public class Student implements Serializable, Component {
         if (semesterList.isEmpty()) {
             console.format("\u001B[36m No Semesters Saved\u001B[0m%n%n");
         } else {
-
-            console.format("%n┐");
             for (Semester sem : semesterList) {
                 console.format("%n├%s", sem.toDisplayName());
             }
