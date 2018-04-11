@@ -61,20 +61,16 @@ class Client {
                     if (input.length == 3) {
                         try {
                             currentObj.remove(input[1], input[2], console);
-                        } catch (ComponentDoesNotExistException cdne) {
-                            console.format(cdne.toString());
-                        } catch (ImproperFormatException ife) {
-                            console.format(ife.toString());
+                        } catch (ComponentDoesNotExistException | ImproperFormatException ex) {
+                            console.format(ex.toString());
                         }
                     }
 
                     else {
                         try {
                             currentObj.remove(console);
-                        } catch (ComponentDoesNotExistException cdne) {
-                            console.format(cdne.toString());
-                        } catch (ImproperFormatException ife) {
-                            console.format(ife.toString());
+                        } catch (ComponentDoesNotExistException | ImproperFormatException ex) {
+                            console.format(ex.toString());
                         }
                     }
                     currentObj.render(console);
@@ -86,19 +82,15 @@ class Client {
 
                         try {
                             currentObj = currentObj.open(input[1], input[2]);
-                        } catch (ComponentDoesNotExistException cdne) {
-                            console.format(cdne.toString());
-                        } catch (ImproperFormatException ife) {
-                            console.format(ife.toString());
+                        } catch (ComponentDoesNotExistException | ImproperFormatException ex) {
+                            console.format(ex.toString());
                         }
 
                     } else {
                         try {
                             currentObj = currentObj.open(console);
-                        } catch (ComponentDoesNotExistException cdne) {
-                            console.format(cdne.toString());
-                        } catch (ImproperFormatException ife) {
-                            console.format(ife.toString());
+                        } catch (ComponentDoesNotExistException | ImproperFormatException ex) {
+                            console.format(ex.toString());
                         }
                     }
                     break;
