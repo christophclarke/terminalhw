@@ -32,6 +32,9 @@ class Client {
                                                                                                     .toLowerCase()
                                                                                                     .trim()
                                                                                                     .split(" ");
+            // Clear the screen
+            console.format("\033[H\033[2J");
+            console.flush();
 
             switch (input[0]) {
                 case "show":
@@ -103,6 +106,7 @@ class Client {
                         loadStudent();
                     } else {
                         currentObj = currentObj.out();
+                        currentObj.render(console);
                     }
 
                     break;
@@ -182,5 +186,4 @@ class Client {
         }
 
     }
-
 }
