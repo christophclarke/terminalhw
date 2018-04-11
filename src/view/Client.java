@@ -34,10 +34,20 @@ class Client {
                 case "show":
                     currentObj.render(console);
                     break;
+
                 case "add":
-                    currentObj.add(console);
+                    if (input.length > 1) {
+                        try {
+                            currentObj.add(input[1], Integer.parseInt(input[2]), console);
+                        } catch (Exception e) {
+                            System.err.println(e.toString());
+                            currentObj.add(console);
+                        }
+                    }
+                    else{currentObj.add(console);}
                     currentObj.render(console);
                     break;
+
                 case "remove":
                     if (input.length > 1) {
                         try {
@@ -48,9 +58,12 @@ class Client {
                         }
                     }
                     else {currentObj.remove(console);}
+                    currentObj.render(console);
                     break;
+
                 case "open":
                     break;
+
                 case "help":
                     console.format("%n<<this is an interactive terminal application>>%n%n");
                     console.format("commands: %n%n");
@@ -58,15 +71,19 @@ class Client {
                     console.format("    'quit': exits the application%n%n");
                     console.format("    'help': shows this prompt%n%n");
                     break;
+
                 case "quit":
-                    quit();
-                    break;
-                case "save":
-                    //TODO implement session save
                     save();
                     quit();
                     break;
+
+                case "save":
+                    //TODO implement session save
+                    save();
+                    break;
+
                 default: console.format("unknown command, type 'help' for help menu%n");
+
             }
 
         }
@@ -74,8 +91,10 @@ class Client {
     }
 
     private void quit() {
+
         console.format("Hope to see you soon!%n%n");
         System.exit(0);
+
     }
 
     private void save() {
@@ -104,6 +123,7 @@ class Client {
                 System.err.println("------");
                 System.err.printf("file not found (%s.student)%n", load);
             }
+
         }
 
     }

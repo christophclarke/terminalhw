@@ -41,11 +41,12 @@ public class Student implements Serializable, Component {
             console.format("\u001B[31m No Semesters Saved\u001B[0m%n%n");
         } else {
 
+            console.format("%n┐");
             for (Semester sem : semesterList) {
                 console.format("%n├%s", sem.toDisplayName());
             }
+            console.format("%n┘%n%n");
 
-            console.format("%n┴%n%n");
         }
 
     }
@@ -54,6 +55,14 @@ public class Student implements Serializable, Component {
     public void add(Console console) {
 
         semesterList.add(new Semester(console));
+        Collections.sort(semesterList);
+
+    }
+
+    @Override
+    public void add(String arg1, int arg2, Console console) {
+
+        semesterList.add(new Semester(arg1, arg2, console));
         Collections.sort(semesterList);
 
     }
@@ -88,7 +97,7 @@ public class Student implements Serializable, Component {
     }
 
     @Override
-    public Component open(Component component) {
+    public Component open(String componentString) {
         return null;
     }
 

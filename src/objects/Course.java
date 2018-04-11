@@ -38,6 +38,11 @@ class Course implements Serializable, Component {
     }
 
     @Override
+    public void add(String arg1, int arg2, Console console) {
+
+    }
+
+    @Override
     public void remove(Console console) {
 
     }
@@ -48,7 +53,7 @@ class Course implements Serializable, Component {
     }
 
     @Override
-    public Component open(Component component) {
+    public Component open(String componentString) {
         return null;
     }
 

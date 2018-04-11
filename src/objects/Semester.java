@@ -13,20 +13,24 @@ public class Semester implements Serializable, Component, Comparable<Semester> {
 
     private ArrayList<Course> courseList;
 
-    //New semester constructor, must pass year and term
+    //New semester constructor
     Semester(Console console) {
 
         console.format("%n--- Creating Semester ---%n");
-        switch (console.readLine("Term (Spring, Fall, etc.) > ").toLowerCase().trim()) {
-
-            case "spring": this.term = 0; break;
-
-            case "fall": this.term = 1; break;
-
-        }
+        this.term = StringToTermInt(console.readLine("Term (Spring, Fall, etc.) > "));
         this.year = Integer.parseInt(console.readLine("Year > "));
         this.courseList = new ArrayList<>();
         console.format("--- Semester Added ---%n%n");
+
+    }
+
+    Semester(String term, int year, Console console) {
+
+        this.term = StringToTermInt(term);
+        this.year = year;
+        this.courseList = new ArrayList<>();
+        console.format("--- Semester Added ---%n%n");
+
     }
 
     public String toDisplayName() {
@@ -45,8 +49,8 @@ public class Semester implements Serializable, Component, Comparable<Semester> {
             case 0: return "Spring";
             case 1: return "Fall";
         }
-
         return null;
+
     }
 
     public int getYear() {
@@ -64,6 +68,11 @@ public class Semester implements Serializable, Component, Comparable<Semester> {
     }
 
     @Override
+    public void add(String arg1, int arg2, Console console) {
+
+    }
+
+    @Override
     public void remove(Console console) {
 
     }
@@ -74,7 +83,7 @@ public class Semester implements Serializable, Component, Comparable<Semester> {
     }
 
     @Override
-    public Component open(Component component) {
+    public Component open(String componentString) {
         return null;
     }
 
@@ -125,6 +134,22 @@ public class Semester implements Serializable, Component, Comparable<Semester> {
         if (diff != 0) {return diff;}
         diff = this.term - that.term;
         return diff;
+
+    }
+
+    private int StringToTermInt(String termtext) {
+
+        switch (termtext.trim().toLowerCase()) {
+
+            case "spring":
+                return 0;
+
+            case "fall":
+                return 1;
+
+        }
+
+        return -1;
 
     }
 }
