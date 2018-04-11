@@ -4,7 +4,7 @@ import java.io.Console;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-class Course implements Serializable, Renderable {
+class Course implements Serializable, Component {
 
     private String department;
     private int courseNumber;
@@ -45,5 +45,20 @@ class Course implements Serializable, Renderable {
 
 
 
+    }
+
+    @Override
+    public void add() {
+
+    }
+
+    @Override
+    public void remove() {
+
+    }
+
+    @Override
+    public Component open(Component component) {
+        return null;
     }
 }

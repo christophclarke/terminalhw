@@ -1,15 +1,14 @@
 package view;
 
 import file.ObjectPersistance;
-import objects.Renderable;
-
+import objects.Component;
 import java.io.Console;
 import java.io.File;
 import java.io.IOException;
 
 class Client {
 
-    private Renderable currentObj;
+    private Component currentObj;
     private Console console;
     private File rootDir;
 
@@ -88,6 +87,7 @@ class Client {
                 System.err.printf("file not found (%s.student)%n", load);
             }
         }
+
     }
 
 }

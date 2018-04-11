@@ -4,7 +4,7 @@ import java.io.Console;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Student implements Serializable, Renderable {
+public class Student implements Serializable, Component {
 
     private String firstName;
     private String lastName;
@@ -47,5 +47,20 @@ public class Student implements Serializable, Renderable {
             console.format("%n┴%n%n");
         }
 
+    }
+
+    @Override
+    public void add() {
+
+    }
+
+    @Override
+    public void remove() {
+
+    }
+
+    @Override
+    public Component open(Component component) {
+        return null;
     }
 }

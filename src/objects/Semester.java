@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.io.StringWriter;
 import java.util.ArrayList;
 
-public class Semester implements Serializable, Renderable {
+public class Semester implements Serializable, Component {
 
     private int term;
 
@@ -74,5 +74,20 @@ public class Semester implements Serializable, Renderable {
     @Override
     public void render(Console c) {
 
+    }
+
+    @Override
+    public void add() {
+
+    }
+
+    @Override
+    public void remove() {
+
+    }
+
+    @Override
+    public Component open(Component component) {
+        return null;
     }
 }
