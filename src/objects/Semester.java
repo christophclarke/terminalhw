@@ -60,6 +60,7 @@ public class Semester implements Serializable, Renderable {
     //returns "Semester{Year: {year}, Term: {term}, {classList.toString()}}"
 
     String toDisplayName() {
+
         StringWriter sw = new StringWriter();
         switch (term) {
             case 0: sw.append("Spring"); break;

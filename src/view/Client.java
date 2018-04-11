@@ -28,7 +28,7 @@ class Client {
 
             switch (input[0]) {
                 case "show":
-//                    render(console, currentObj);
+                    currentObj.render(console);
                     break;
                 case "open":
 
@@ -45,7 +45,8 @@ class Client {
                 case "save":
                     //TODO implement session save
                     save();
-                    loop = false;
+                    quit();
+                    break;
                 default: console.format("unknown command, type 'help' for help menu%n");
             }
 
@@ -79,7 +80,6 @@ class Client {
                 quit();
             }
 
-            //TODO: allows session restoration
             try {
                 currentObj = ObjectPersistance.loadStudent(load, rootDir);
                 break;

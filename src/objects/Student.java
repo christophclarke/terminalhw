@@ -31,7 +31,21 @@ public class Student implements Serializable, Renderable {
     }
 
     @Override
-    public void render(Console c) {
+    public void render(Console console) {
+
+        console.format("Current Student: %s %s%n%n", firstName, lastName);
+        console.format("Semesters Saved:");
+
+        if (semesterList.isEmpty()) {
+            console.format("\u001B[31m No Semesters Saved\u001B[0m%n%n");
+        } else {
+
+            for (Semester sem : semesterList) {
+                console.format("%n├%s", sem.toDisplayName());
+            }
+
+            console.format("%n┴%n%n");
+        }
 
     }
 }
