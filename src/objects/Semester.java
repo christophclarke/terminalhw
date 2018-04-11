@@ -13,8 +13,10 @@ public class Semester implements Serializable, Component, Comparable<Semester> {
 
     private ArrayList<Course> courseList;
 
+    private Student parent;
+
     //New semester constructor
-    Semester(Console console) throws ImproperFormatException {
+    Semester(Console console, Student caller) throws ImproperFormatException {
 
         console.format("%n--- Creating Semester ---%n");
         this.term = StringToTermInt(console.readLine("Term (Spring, Fall, etc.) > "));
@@ -24,10 +26,11 @@ public class Semester implements Serializable, Component, Comparable<Semester> {
             throw new ImproperFormatException();
         }
         this.courseList = new ArrayList<>();
+        this.parent = caller;
         console.format("--- Semester Added ---%n%n");
     }
 
-    Semester(String term, String year, Console console) throws ImproperFormatException {
+    Semester(String term, String year, Console console, Student caller) throws ImproperFormatException {
 
         int yearInt;
 
@@ -40,6 +43,7 @@ public class Semester implements Serializable, Component, Comparable<Semester> {
         this.term = StringToTermInt(term);
         this.year = yearInt;
         this.courseList = new ArrayList<>();
+        this.parent = caller;
         console.format("--- Semester Added ---%n%n");
 
     }
@@ -96,6 +100,11 @@ public class Semester implements Serializable, Component, Comparable<Semester> {
     @Override
     public Component open(String arg1, String arg2) {
         return null;
+    }
+
+    @Override
+    public Component out() {
+        return parent;
     }
 
     /**

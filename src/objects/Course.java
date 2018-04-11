@@ -12,9 +12,12 @@ class Course implements Serializable, Component {
     private ArrayList<Exam> examList = new ArrayList<>();
     private ArrayList<Assignment> assignmentList = new ArrayList<>();
 
-    public Course(String dept, int courseNbr) {
+    private Semester parent;
+
+    public Course(String dept, int courseNbr, Semester caller) {
         this.department = dept;
         this.courseNumber = courseNbr;
+        this.parent = caller;
     }
 
 
@@ -55,6 +58,11 @@ class Course implements Serializable, Component {
     @Override
     public Component open(String arg1, String arg2) {
         return null;
+    }
+
+    @Override
+    public Component out() {
+        return parent;
     }
 
     @Override

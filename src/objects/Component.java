@@ -16,6 +16,8 @@ public interface Component {
 
     Component open(String arg1, String arg2) throws ComponentDoesNotExistException, ImproperFormatException;
 
+    Component out();
+
     String toDisplayName();
 
 }

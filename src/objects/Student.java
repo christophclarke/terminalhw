@@ -54,7 +54,7 @@ public class Student implements Serializable, Component {
     @Override
     public void add(Console console) throws ImproperFormatException {
 
-        semesterList.add(new Semester(console));
+        semesterList.add(new Semester(console, this));
         Collections.sort(semesterList);
 
     }
@@ -62,7 +62,7 @@ public class Student implements Serializable, Component {
     @Override
     public void add(String arg1, String arg2, Console console) throws ImproperFormatException {
 
-        semesterList.add(new Semester(arg1, arg2, console));
+        semesterList.add(new Semester(arg1, arg2, console, this));
         Collections.sort(semesterList);
 
     }
@@ -125,6 +125,11 @@ public class Student implements Serializable, Component {
         }
         throw new ComponentDoesNotExistException();
 
+    }
+
+    @Override
+    public Component out() {
+        return null;
     }
 
     @Override

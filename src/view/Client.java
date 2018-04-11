@@ -95,6 +95,16 @@ class Client {
                     }
                     break;
 
+                case "out":
+
+                    if (currentObj.out() == null) {
+                        loadStudent();
+                    } else {
+                        currentObj = currentObj.out();
+                    }
+
+                    break;
+
                 case "help":
                     console.format("%n<<this is an interactive terminal application>>%n%n");
                     console.format("commands: %n%n");
@@ -129,7 +139,19 @@ class Client {
     }
 
     private void save() {
-        ObjectPersistance.saveStudent((Student)currentObj, rootDir);
+
+        Student saveObj = null;
+        boolean notStudent = true;
+        do {
+            try {
+                saveObj = (Student)currentObj;
+                notStudent = false;
+                break;
+            } catch (ClassCastException cce) {
+                currentObj = currentObj.out();
+            }
+        } while (notStudent);
+        ObjectPersistance.saveStudent(saveObj, rootDir);
     }
 
     private void loadStudent() {
@@ -143,7 +165,7 @@ class Client {
         while (true) {
             String load = console.readLine("Select Student (full filename): ");
 
-            if (load.toLowerCase().equals("quit")) {
+            if (load.trim().equalsIgnoreCase("quit")) {
                 quit();
             }
 
