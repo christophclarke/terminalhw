@@ -73,7 +73,7 @@ public class Student implements Serializable, Component {
 
         console.format("--- Removing Semester ---%n");
         String rmTerm = console.readLine("Semester Term > ").trim();
-        String rmYear = console.readLine("Semester Year > ");
+        String rmYear = console.readLine("Semester Year > ").trim();
 
         remove(rmTerm, rmYear, console);
 
@@ -102,6 +102,17 @@ public class Student implements Serializable, Component {
 
         }
         throw new ComponentDoesNotExistException();
+
+    }
+
+    @Override
+    public Component open(Console console) throws ComponentDoesNotExistException, ImproperFormatException {
+
+        console.format("--- Entering Semester ---");
+        String termString = console.readLine("Semester Term > ").trim();
+        String yearString = console.readLine("Semester Year > ").trim();
+
+        return open(termString, yearString);
 
     }
 

@@ -1,7 +1,6 @@
 package objects;
 
-import exceptions.ComponentDoesNotExistException;
-import exceptions.ImproperFormatException;
+import exceptions.*;
 
 import java.io.Console;
 
@@ -16,6 +15,8 @@ public interface Component {
     void remove(Console console) throws ComponentDoesNotExistException, ImproperFormatException;
 
     void remove(String arg1, String arg2, Console console) throws ComponentDoesNotExistException, ImproperFormatException;
+
+    Component open(Console console) throws ComponentDoesNotExistException, ImproperFormatException;
 
     Component open(String arg1, String arg2) throws ComponentDoesNotExistException, ImproperFormatException;
 

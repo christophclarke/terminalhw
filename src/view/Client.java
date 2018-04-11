@@ -92,6 +92,14 @@ class Client {
                             console.format(ife.toString());
                         }
 
+                    } else {
+                        try {
+                            currentObj = currentObj.open(console);
+                        } catch (ComponentDoesNotExistException cdne) {
+                            console.format(cdne.toString());
+                        } catch (ImproperFormatException ife) {
+                            console.format(ife.toString());
+                        }
                     }
                     break;
 
