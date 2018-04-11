@@ -1,13 +1,19 @@
 package objects;
 
 import java.io.Console;
-import java.util.ArrayList;
 
 public interface Component {
 
-    void render(Console c);
-    void add();
-    void remove();
+    void render(Console console);
+
+    void add(Console console);
+
+    void remove(Console console);
+
+    void remove(String arg1, int arg2, Console console);
+
     Component open(Component component);
+
+    String toDisplayName();
 
 }

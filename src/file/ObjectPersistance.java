@@ -6,7 +6,7 @@ import java.io.*;
 
 public class ObjectPersistance {
 
-    static void saveStudent(Student student, File rootDir) {
+    public static void saveStudent(Student student, File rootDir) {
 
         //Objectify .student file of given student, whether it exists or not.
         File studentFile = new File(rootDir, student.toFileName());

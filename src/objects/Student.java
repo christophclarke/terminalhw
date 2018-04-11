@@ -3,6 +3,7 @@ package objects;
 import java.io.Console;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Student implements Serializable, Component {
 
@@ -50,17 +51,49 @@ public class Student implements Serializable, Component {
     }
 
     @Override
-    public void add() {
+    public void add(Console console) {
+
+        semesterList.add(new Semester(console));
+        Collections.sort(semesterList);
 
     }
 
     @Override
-    public void remove() {
+    public void remove(Console console) {
 
+        console.format("--- Removing Semester ---%n");
+        String rmTerm = console.readLine("Semester Term > ").trim();
+        int rmYear = Integer.parseInt(console.readLine("Semester Year > "));
+
+        remove(rmTerm, rmYear, console);
+
+    }
+
+    @Override
+    public void remove(String rmTerm, int rmYear, Console console) {
+
+        for (int i = 0; i < semesterList.size(); i++) {
+
+            // If a given semester term and year match the entered term and year, remove it
+            if (semesterList.get(i).getYear() == rmYear) {
+                if(semesterList.get(i).getTermString().equalsIgnoreCase(rmTerm)) {
+                    semesterList.remove(i);
+                    console.format("--- Semester Removed ---%n");
+                    return;
+                }
+            }
+
+        }
+        console.format("Semester Not Found%n");
     }
 
     @Override
     public Component open(Component component) {
         return null;
+    }
+
+    @Override
+    public String toDisplayName() {
+        return firstName + " " + lastName;
     }
 }

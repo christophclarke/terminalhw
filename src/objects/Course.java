@@ -8,6 +8,7 @@ class Course implements Serializable, Component {
 
     private String department;
     private int courseNumber;
+
     private ArrayList<Exam> examList = new ArrayList<>();
     private ArrayList<Assignment> assignmentList = new ArrayList<>();
 
@@ -16,22 +17,6 @@ class Course implements Serializable, Component {
         this.courseNumber = courseNbr;
     }
 
-    public void addExam(Exam addedExam) {
-        examList.add(addedExam);
-    }
-
-    //returns true if exam exists and is removed, else false
-    public boolean removeExam(Exam removedExam) {
-        return examList.remove(removedExam);
-    }
-
-    public void addAssignment(Assignment addedAssignment) {
-        assignmentList.add(addedAssignment);
-    }
-
-    public boolean removeAssignment(Assignment removedAssignment) {
-        return assignmentList.remove(removedAssignment);
-    }
 
     //returns "Course{{dept} {courseNbr} | Exams: {examList.toString()}, Assignments: {assignmentList.toString()}}"
     @Override
@@ -48,17 +33,27 @@ class Course implements Serializable, Component {
     }
 
     @Override
-    public void add() {
+    public void add(Console console) {
 
     }
 
     @Override
-    public void remove() {
+    public void remove(Console console) {
+
+    }
+
+    @Override
+    public void remove(String arg1, int arg2, Console console) {
 
     }
 
     @Override
     public Component open(Component component) {
+        return null;
+    }
+
+    @Override
+    public String toDisplayName() {
         return null;
     }
 }

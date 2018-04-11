@@ -2,6 +2,8 @@ package view;
 
 import file.ObjectPersistance;
 import objects.Component;
+import objects.Student;
+
 import java.io.Console;
 import java.io.File;
 import java.io.IOException;
@@ -23,14 +25,32 @@ class Client {
 
         while (loop) {
 
-            String[] input = console.readLine("How can I help? > ").toLowerCase().split(" ");
+            String[] input = console.readLine("(%s) How can I help? > ", currentObj.toDisplayName())
+                                                                                                    .toLowerCase()
+                                                                                                    .trim()
+                                                                                                    .split(" ");
 
             switch (input[0]) {
                 case "show":
                     currentObj.render(console);
                     break;
+                case "add":
+                    currentObj.add(console);
+                    currentObj.render(console);
+                    break;
+                case "remove":
+                    if (input.length > 1) {
+                        try {
+                            currentObj.remove(input[1], Integer.parseInt(input[2]), console);
+                        } catch (Exception e) {
+                            System.err.println(e.toString());
+                            currentObj.remove(console);
+                        }
+                    }
+                    else {currentObj.remove(console);}
+                    break;
                 case "open":
-
+                    break;
                 case "help":
                     console.format("%n<<this is an interactive terminal application>>%n%n");
                     console.format("commands: %n%n");
@@ -51,8 +71,6 @@ class Client {
 
         }
 
-
-
     }
 
     private void quit() {
@@ -61,7 +79,7 @@ class Client {
     }
 
     private void save() {
-
+        ObjectPersistance.saveStudent((Student)currentObj, rootDir);
     }
 
     private void loadStudent() {
