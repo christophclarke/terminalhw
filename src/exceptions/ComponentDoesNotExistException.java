@@ -1,4 +1,4 @@
-package objects;
+package exceptions;
 
 public class ComponentDoesNotExistException extends Throwable {
 

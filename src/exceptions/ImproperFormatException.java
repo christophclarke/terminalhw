@@ -1,4 +1,4 @@
-package objects;
+package exceptions;
 
 public class ImproperFormatException extends Throwable {
 

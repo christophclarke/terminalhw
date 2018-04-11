@@ -1,5 +1,8 @@
 package objects;
 
+import exceptions.ComponentDoesNotExistException;
+import exceptions.ImproperFormatException;
+
 import java.io.Console;
 
 public interface Component {

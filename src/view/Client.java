@@ -3,8 +3,8 @@ package view;
 import file.ObjectPersistance;
 
 import objects.Component;
-import objects.ComponentDoesNotExistException;
-import objects.ImproperFormatException;
+import exceptions.ComponentDoesNotExistException;
+import exceptions.ImproperFormatException;
 import objects.Student;
 
 import java.io.Console;

@@ -1,5 +1,7 @@
 package objects;
 
+import exceptions.ComponentDoesNotExistException;
+
 import java.io.Console;
 import java.io.Serializable;
 import java.util.ArrayList;

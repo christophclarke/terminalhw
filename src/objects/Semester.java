@@ -1,5 +1,8 @@
 package objects;
 
+import exceptions.ComponentDoesNotExistException;
+import exceptions.ImproperFormatException;
+
 import java.io.Console;
 import java.io.Serializable;
 import java.io.StringWriter;
