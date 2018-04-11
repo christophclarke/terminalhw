@@ -1,7 +1,10 @@
 package view;
 
 import file.ObjectPersistance;
+
 import objects.Component;
+import objects.ComponentDoesNotExistException;
+import objects.ImproperFormatException;
 import objects.Student;
 
 import java.io.Console;
@@ -36,32 +39,60 @@ class Client {
                     break;
 
                 case "add":
-                    if (input.length > 1) {
+                    if (input.length == 3) {
                         try {
-                            currentObj.add(input[1], Integer.parseInt(input[2]), console);
-                        } catch (Exception e) {
-                            System.err.println(e.toString());
-                            currentObj.add(console);
+                            currentObj.add(input[1], input[2], console);
+                        } catch (ImproperFormatException ife) {
+                            console.format(ife.toString());
                         }
                     }
-                    else{currentObj.add(console);}
+
+                    else {
+                        try {
+                            currentObj.add(console);
+                        } catch (ImproperFormatException ife) {
+                            console.format(ife.toString());
+                        }
+                    }
                     currentObj.render(console);
                     break;
 
                 case "remove":
-                    if (input.length > 1) {
+                    if (input.length == 3) {
                         try {
-                            currentObj.remove(input[1], Integer.parseInt(input[2]), console);
-                        } catch (Exception e) {
-                            System.err.println(e.toString());
-                            currentObj.remove(console);
+                            currentObj.remove(input[1], input[2], console);
+                        } catch (ComponentDoesNotExistException cdne) {
+                            console.format(cdne.toString());
+                        } catch (ImproperFormatException ife) {
+                            console.format(ife.toString());
                         }
                     }
-                    else {currentObj.remove(console);}
+
+                    else {
+                        try {
+                            currentObj.remove(console);
+                        } catch (ComponentDoesNotExistException cdne) {
+                            console.format(cdne.toString());
+                        } catch (ImproperFormatException ife) {
+                            console.format(ife.toString());
+                        }
+                    }
                     currentObj.render(console);
                     break;
 
                 case "open":
+
+                    if (input.length == 3) {
+
+                        try {
+                            currentObj = currentObj.open(input[1], input[2]);
+                        } catch (ComponentDoesNotExistException cdne) {
+                            console.format(cdne.toString());
+                        } catch (ImproperFormatException ife) {
+                            console.format(ife.toString());
+                        }
+
+                    }
                     break;
 
                 case "help":

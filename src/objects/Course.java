@@ -38,22 +38,22 @@ class Course implements Serializable, Component {
     }
 
     @Override
-    public void add(String arg1, int arg2, Console console) {
+    public void add(String arg1, String arg2, Console console) {
 
     }
 
     @Override
-    public void remove(Console console) {
+    public void remove(Console console) throws ComponentDoesNotExistException {
 
     }
 
     @Override
-    public void remove(String arg1, int arg2, Console console) {
+    public void remove(String arg1, String arg2, Console console) throws ComponentDoesNotExistException {
 
     }
 
     @Override
-    public Component open(String componentString) {
+    public Component open(String arg1, String arg2) {
         return null;
     }
 

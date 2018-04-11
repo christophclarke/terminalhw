@@ -14,20 +14,31 @@ public class Semester implements Serializable, Component, Comparable<Semester> {
     private ArrayList<Course> courseList;
 
     //New semester constructor
-    Semester(Console console) {
+    Semester(Console console) throws ImproperFormatException {
 
         console.format("%n--- Creating Semester ---%n");
         this.term = StringToTermInt(console.readLine("Term (Spring, Fall, etc.) > "));
-        this.year = Integer.parseInt(console.readLine("Year > "));
+        try {
+            this.year = Integer.parseInt(console.readLine("Year > "));
+        } catch (NumberFormatException nfe) {
+            throw new ImproperFormatException();
+        }
         this.courseList = new ArrayList<>();
         console.format("--- Semester Added ---%n%n");
-
     }
 
-    Semester(String term, int year, Console console) {
+    Semester(String term, String year, Console console) throws ImproperFormatException {
+
+        int yearInt;
+
+        try {
+            yearInt = Integer.parseInt(year);
+        } catch (NumberFormatException nfe) {
+            throw new ImproperFormatException();
+        }
 
         this.term = StringToTermInt(term);
-        this.year = year;
+        this.year = yearInt;
         this.courseList = new ArrayList<>();
         console.format("--- Semester Added ---%n%n");
 
@@ -68,22 +79,22 @@ public class Semester implements Serializable, Component, Comparable<Semester> {
     }
 
     @Override
-    public void add(String arg1, int arg2, Console console) {
+    public void add(String arg1, String arg2, Console console) {
 
     }
 
     @Override
-    public void remove(Console console) {
+    public void remove(Console console) throws ComponentDoesNotExistException {
 
     }
 
     @Override
-    public void remove(String arg1, int arg2, Console console) {
+    public void remove(String arg1, String arg2, Console console) throws ComponentDoesNotExistException {
 
     }
 
     @Override
-    public Component open(String componentString) {
+    public Component open(String arg1, String arg2) {
         return null;
     }
 
@@ -137,7 +148,7 @@ public class Semester implements Serializable, Component, Comparable<Semester> {
 
     }
 
-    private int StringToTermInt(String termtext) {
+    private int StringToTermInt(String termtext) throws ImproperFormatException {
 
         switch (termtext.trim().toLowerCase()) {
 
@@ -149,7 +160,7 @@ public class Semester implements Serializable, Component, Comparable<Semester> {
 
         }
 
-        return -1;
+        throw new ImproperFormatException();
 
     }
 }

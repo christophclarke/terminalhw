@@ -38,7 +38,7 @@ public class Student implements Serializable, Component {
         console.format("Semesters Saved:");
 
         if (semesterList.isEmpty()) {
-            console.format("\u001B[31m No Semesters Saved\u001B[0m%n%n");
+            console.format("\u001B[36m No Semesters Saved\u001B[0m%n%n");
         } else {
 
             console.format("%n┐");
@@ -52,7 +52,7 @@ public class Student implements Serializable, Component {
     }
 
     @Override
-    public void add(Console console) {
+    public void add(Console console) throws ImproperFormatException {
 
         semesterList.add(new Semester(console));
         Collections.sort(semesterList);
@@ -60,7 +60,7 @@ public class Student implements Serializable, Component {
     }
 
     @Override
-    public void add(String arg1, int arg2, Console console) {
+    public void add(String arg1, String arg2, Console console) throws ImproperFormatException {
 
         semesterList.add(new Semester(arg1, arg2, console));
         Collections.sort(semesterList);
@@ -68,18 +68,25 @@ public class Student implements Serializable, Component {
     }
 
     @Override
-    public void remove(Console console) {
+    public void remove(Console console) throws ComponentDoesNotExistException, ImproperFormatException {
 
         console.format("--- Removing Semester ---%n");
         String rmTerm = console.readLine("Semester Term > ").trim();
-        int rmYear = Integer.parseInt(console.readLine("Semester Year > "));
+        String rmYear = console.readLine("Semester Year > ");
 
         remove(rmTerm, rmYear, console);
 
     }
 
     @Override
-    public void remove(String rmTerm, int rmYear, Console console) {
+    public void remove(String rmTerm, String rmYearStringIn, Console console) throws ComponentDoesNotExistException, ImproperFormatException {
+
+        int rmYear;
+        try {
+            rmYear = Integer.parseInt(rmYearStringIn);
+        } catch (NumberFormatException nfe) {
+            throw new ImproperFormatException();
+        }
 
         for (int i = 0; i < semesterList.size(); i++) {
 
@@ -93,12 +100,31 @@ public class Student implements Serializable, Component {
             }
 
         }
-        console.format("Semester Not Found%n");
+        throw new ComponentDoesNotExistException();
+
     }
 
     @Override
-    public Component open(String componentString) {
-        return null;
+    public Component open(String arg1, String arg2) throws ComponentDoesNotExistException, ImproperFormatException {
+
+        int year;
+
+        try {
+             year = Integer.parseInt(arg2);
+        } catch (NumberFormatException nfe) {
+            throw new ImproperFormatException();
+        }
+
+        for (Semester sem : semesterList) {
+
+            if (sem.getYear() == year) {
+                if (sem.getTermString().equalsIgnoreCase(arg1))
+                    return sem;
+            }
+
+        }
+        throw new ComponentDoesNotExistException();
+
     }
 
     @Override
