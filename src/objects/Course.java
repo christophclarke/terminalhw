@@ -18,7 +18,7 @@ class Course implements Serializable, Component, Comparable<Course> {
 
     Semester parentSemester;
 
-    public Course(Console console, Semester caller) throws ImproperFormatException {
+    Course(Console console, Semester caller) throws ImproperFormatException {
 
         console.format("%n--- Creating Course ---%n");
         department = console.readLine("Department > ");
@@ -36,7 +36,7 @@ class Course implements Serializable, Component, Comparable<Course> {
 
     }
 
-    public Course(String dept, String courseNumStr, Console console, Semester caller) throws ImproperFormatException {
+    Course(String dept, String courseNumStr, Console console, Semester caller) throws ImproperFormatException {
 
         try {
             this.courseNumber = Integer.parseInt(courseNumStr);
@@ -51,11 +51,11 @@ class Course implements Serializable, Component, Comparable<Course> {
         console.format("--- Course Created ---%n%n");
     }
 
-    public int getCourseNumber() {
+    int getCourseNumber() {
         return courseNumber;
     }
 
-    public String getDepartment() {
+    String getDepartment() {
         return department;
     }
 

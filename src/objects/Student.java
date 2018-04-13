@@ -30,11 +30,6 @@ public class Student implements Serializable, Component {
     }
 
     @Override
-    public String toString() {
-        return firstName + " " + lastName;
-    }
-
-    @Override
     public void render(Console console) {
 
         console.format("Current Student: %s%n%n", toDisplayName());
