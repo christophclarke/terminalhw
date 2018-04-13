@@ -21,6 +21,9 @@ public class Entry {
 
         // Welcome message
 
+        console.format("\033[H\033[2J");
+        console.flush();
+
         console.printf("Hello \u001B[31m%s\u001B[0m, welcome to termhw!%n", System.getProperty("user.name"));
 
         File rootDir = new File(System.getProperty("user.home") + "/.hwdata/");

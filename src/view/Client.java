@@ -23,6 +23,8 @@ class Client {
         rootDir = passedDir;
 
         loadStudent();
+        clearScreen();
+        currentObj.render(console);
 
         boolean loop = true;
 
@@ -33,8 +35,7 @@ class Client {
                                                                                                     .trim()
                                                                                                     .split(" ");
             // Clear the screen
-            console.format("\033[H\033[2J");
-            console.flush();
+            clearScreen();
 
             switch (input[0]) {
                 case "show":
@@ -147,6 +148,7 @@ class Client {
     private void save() {
 
         Student saveObj = null;
+        Component originalObj = currentObj;
         boolean notStudent = true;
         do {
             try {
@@ -158,6 +160,8 @@ class Client {
             }
         } while (notStudent);
         ObjectPersistance.saveStudent(saveObj, rootDir);
+        currentObj = originalObj;
+
     }
 
     private void loadStudent() {
@@ -186,4 +190,12 @@ class Client {
         }
 
     }
+
+    private void clearScreen() {
+
+        console.format("\033[H\033[2J");
+        console.flush();
+
+    }
+
 }
