@@ -16,7 +16,7 @@ class Course implements Serializable, Component, Comparable<Course> {
     private ArrayList<Exam> examList;
     private ArrayList<Assignment> assignmentList;
 
-    private Semester parent;
+    Semester parentSemester;
 
     public Course(Console console, Semester caller) throws ImproperFormatException {
 
@@ -30,7 +30,7 @@ class Course implements Serializable, Component, Comparable<Course> {
 
         this.examList = new ArrayList<>();
         this.assignmentList = new ArrayList<>();
-        this.parent = caller;
+        this.parentSemester = caller;
 
         console.format("--- Course Created ---%n%n");
 
@@ -44,7 +44,7 @@ class Course implements Serializable, Component, Comparable<Course> {
             throw new ImproperFormatException();
         }
         this.department = dept;
-        this.parent = caller;
+        this.parentSemester = caller;
         this.examList = new ArrayList<>();
         this.assignmentList = new ArrayList<>();
 
@@ -67,9 +67,33 @@ class Course implements Serializable, Component, Comparable<Course> {
     }
 
     @Override
-    public void render(Console c) {
+    public void render(Console console) {
 
+        console.format("Current Student: %s%n%n", parentSemester.parentStudent.toDisplayName());
+        console.format("%s %s:%n%n", parentSemester.toDisplayName(), toDisplayName());
+        if (assignmentList.isEmpty()) {
+            console.format("\u001B[36m No Assignments Saved\u001B[0m%n%n");
+        } else {
 
+            console.format("Assignments:");
+            for (Assignment assignment : assignmentList) {
+                console.format("%n├%s", assignment.toDisplayName());
+            }
+            console.format("%n┘%n%n");
+
+        }
+
+        if (examList.isEmpty()) {
+            console.format("\u001B[36m No Exams Saved\u001B[0m%n%n");
+        } else {
+
+            console.format("Exams:");
+            for (Exam exam : examList) {
+                console.format("%n├%s", exam.toDisplayName());
+            }
+            console.format("%n┘%n%n");
+
+        }
 
     }
 
@@ -105,7 +129,7 @@ class Course implements Serializable, Component, Comparable<Course> {
 
     @Override
     public Component out() {
-        return parent;
+        return parentSemester;
     }
 
     @Override

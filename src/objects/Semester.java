@@ -17,7 +17,7 @@ public class Semester implements Serializable, Component, Comparable<Semester> {
 
     private ArrayList<Course> courseList;
 
-    private Student parent;
+    Student parentStudent;
 
     //New semester constructor
     Semester(Console console, Student caller) throws ImproperFormatException {
@@ -30,7 +30,7 @@ public class Semester implements Serializable, Component, Comparable<Semester> {
             throw new ImproperFormatException();
         }
         this.courseList = new ArrayList<>();
-        this.parent = caller;
+        this.parentStudent = caller;
         console.format("--- Semester Added ---%n%n");
     }
 
@@ -47,7 +47,7 @@ public class Semester implements Serializable, Component, Comparable<Semester> {
         this.term = StringToTermInt(term);
         this.year = yearInt;
         this.courseList = new ArrayList<>();
-        this.parent = caller;
+        this.parentStudent = caller;
         console.format("--- Semester Added ---%n%n");
 
     }
@@ -79,11 +79,12 @@ public class Semester implements Serializable, Component, Comparable<Semester> {
     @Override
     public void render(Console console) {
 
-        console.format("Current Student: %s%n", parent.toDisplayName());
+        console.format("Current Student: %s%n", parentStudent.toDisplayName());
         console.format("Classes saved in %s:", toDisplayName());
         if (courseList.isEmpty()) {
             console.format("\u001B[36m No Courses Saved\u001B[0m%n%n");
         } else {
+
             for (Course course : courseList) {
                 console.format("%n├%s", course.toDisplayName());
             }
@@ -145,17 +146,40 @@ public class Semester implements Serializable, Component, Comparable<Semester> {
 
     @Override
     public Component open(Console console) throws ComponentDoesNotExistException, ImproperFormatException {
-        return null;
+
+        console.format("--- Entering Semester ---");
+        String deptString = console.readLine("Semester Term > ").trim();
+        String classNumString = console.readLine("Semester Year > ").trim();
+
+        return open(deptString, classNumString);
+
     }
 
     @Override
     public Component open(String arg1, String arg2) throws ComponentDoesNotExistException, ImproperFormatException {
-        return null;
+
+        int classNum;
+
+        try {
+            classNum = Integer.parseInt(arg2);
+        } catch (NumberFormatException nfe) {
+            throw new ImproperFormatException();
+        }
+
+        for (Course course : courseList) {
+
+            if (course.getCourseNumber() == classNum) {
+                if (course.getDepartment().equalsIgnoreCase(arg1))
+                    return course;
+            }
+
+        }
+        throw new ComponentDoesNotExistException();
     }
 
     @Override
     public Component out() {
-        return parent;
+        return parentStudent;
     }
 
     /**
