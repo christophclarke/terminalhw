@@ -1,6 +1,5 @@
 package view;
 
-import objects.*;
 import java.io.Console;
 import java.io.File;
 

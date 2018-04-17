@@ -172,10 +172,29 @@ class Client {
             console.format("%" + (25 + file.length()/2) + "s%n", file);
         }
 
-        while (true) {
-            String load = console.readLine("Select Student (full filename): ");
+        boolean loop = true;
 
-            switch (load.toLowerCase()) {
+        while (loop) {
+
+            String[] arguments = console.readLine("Select Student (full filename): ").trim().split(" ");
+
+            if (arguments.length > 1) {
+
+                String load = arguments[0] + "_" +arguments[1];
+
+                try {
+                    currentObj = ObjectPersistance.loadStudent(load, rootDir);
+                    loop = false;
+                    break;
+                } catch (IOException e) {
+                    System.err.println("------");
+                    System.err.printf("file not found (%s.student)%n", load);
+                    continue;
+                }
+
+            }
+
+            switch (arguments[0].toLowerCase()) {
 
                 case "q":
                 case "quit":
@@ -189,11 +208,12 @@ class Client {
 
                 default:
                     try {
-                        currentObj = ObjectPersistance.loadStudent(load, rootDir);
+                        currentObj = ObjectPersistance.loadStudent(arguments[0], rootDir);
+                        loop = false;
                         break;
                     } catch (IOException e) {
                         System.err.println("------");
-                        System.err.printf("file not found (%s.student)%n", load);
+                        System.err.printf("file not found (%s.student)%n", arguments[0]);
                     }
 
             }
