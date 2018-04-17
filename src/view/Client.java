@@ -175,16 +175,27 @@ class Client {
         while (true) {
             String load = console.readLine("Select Student (full filename): ");
 
-            if (load.trim().equalsIgnoreCase("quit")) {
-                quit();
-            }
+            switch (load.toLowerCase()) {
 
-            try {
-                currentObj = ObjectPersistance.loadStudent(load, rootDir);
-                break;
-            } catch (IOException e) {
-                System.err.println("------");
-                System.err.printf("file not found (%s.student)%n", load);
+                case "q":
+                case "quit":
+                    quit();
+                    break;
+
+                case "n":
+                case "new":
+                    ObjectPersistance.saveStudent(new Student(console), rootDir);
+                    continue;
+
+                default:
+                    try {
+                        currentObj = ObjectPersistance.loadStudent(load, rootDir);
+                        break;
+                    } catch (IOException e) {
+                        System.err.println("------");
+                        System.err.printf("file not found (%s.student)%n", load);
+                    }
+
             }
 
         }
