@@ -17,7 +17,7 @@ public class Assignment implements Serializable, Component, Comparable<Assignmen
     Assignment(Console console, Course caller) throws ImproperFormatException {
 
         console.format("%n--- Creating Assignment ---%n");
-        this.month = console.readLine("Due Month > ").toLowerCase();
+        this.month = console.readLine("Due Month > ");
         try {
             this.date = Integer.parseInt(console.readLine("Due Day > "));
         } catch (NumberFormatException nfe) {

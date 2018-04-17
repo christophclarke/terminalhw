@@ -17,7 +17,7 @@ public class Exam implements Serializable, Component, Comparable<Exam> {
     Exam(Console console, Course caller) throws ImproperFormatException {
 
         console.format("%n--- Creating Exam ---%n");
-        this.month = console.readLine("Exam Month > ").toLowerCase();
+        this.month = console.readLine("Exam Month > ");
         try {
             this.date = Integer.parseInt(console.readLine("Exam Date > "));
         } catch (NumberFormatException nfe) {
