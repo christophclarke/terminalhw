@@ -85,7 +85,7 @@ class Client {
                     if (input.length == 3) {
 
                         try {
-                            currentObj = currentObj.open(input[1], input[2]);
+                            currentObj = currentObj.open(input[1], input[2], console);
                         } catch (ComponentDoesNotExistException | ImproperFormatException ex) {
                             console.format(ex.toString());
                         }
