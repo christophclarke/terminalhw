@@ -62,7 +62,7 @@ public class Assignment implements Serializable, Component, Comparable<Assignmen
 
         console.format("Current Student: %s%n%n", parentCourse.parentSemester.parentStudent.toDisplayName());
         console.format("%s %s:%n%n", parentCourse.parentSemester.toDisplayName(), parentCourse.toDisplayName());
-        console.format("%s due %s %d", assignmentType, month, date);
+        console.format("%s due %s %d%n%n", assignmentType, month, date);
         if (moreInfo != null) {
             console.format(moreInfo + "%n%n");
         }

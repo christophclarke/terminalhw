@@ -60,7 +60,7 @@ public class Exam implements Serializable, Component, Comparable<Exam> {
 
         console.format("Current Student: %s%n%n", parentCourse.parentSemester.parentStudent.toDisplayName());
         console.format("%s %s:%n%n", parentCourse.parentSemester.toDisplayName(), parentCourse.toDisplayName());
-        console.format("%s exam on %s %d", material, month, date);
+        console.format("%s exam on %s %d%n%n", material, month, date);
         if (moreInfo != null) {
             console.format(moreInfo + "%n%n");
         }
