@@ -203,8 +203,51 @@ class Course implements Serializable, Component, Comparable<Course> {
     }
 
     @Override
-    public Component open(String arg1, String arg2, Console console) {
-        return null;
+    public Component open(String arg1, String arg2, Console console) throws ImproperFormatException, ComponentDoesNotExistException {
+
+        console.format("--- Opening %s ---", arg1);
+        int opDate;
+        String opMonth;
+
+        switch (arg1.toLowerCase().trim()) {
+
+            case "exam":
+                opMonth = console.readLine("Exam Month > ").trim();
+                try {
+                    opDate = Integer.parseInt(console.readLine("Exam Date > ").trim());
+                } catch (NumberFormatException nfe) {
+                    throw new ImproperFormatException();
+                }
+                for (Exam exam : examList) {
+                    if (exam.getMonth().compareToIgnoreCase(opMonth) == 0) {
+                        if (exam.getDate() == opDate)
+                            return exam;
+                    }
+                }
+                throw new ComponentDoesNotExistException();
+
+            case "assignment":
+                opMonth = console.readLine("Assignment Month > ").trim();
+                try {
+                    opDate = Integer.parseInt(console.readLine("Assignment Date > ").trim());
+                } catch (NumberFormatException nfe) {
+                    throw new ImproperFormatException();
+                }
+                String opType = console.readLine("Assignment Type > ").trim();
+                for (Assignment assignment : assignmentList) {
+                    if (assignment.getDueMonth().compareToIgnoreCase(opMonth) == 0) {
+                        if (assignment.getDueDay() == opDate) {
+                            if (assignment.getAssignmentType().compareToIgnoreCase(opType) == 0)
+                                return assignment;
+                        }
+                    }
+                }
+                throw new ComponentDoesNotExistException();
+
+            default:
+                throw new ImproperFormatException();
+        }
+
     }
 
     @Override
