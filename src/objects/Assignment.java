@@ -94,7 +94,7 @@ public class Assignment implements Serializable, Component, Comparable<Assignmen
             case "y":
             case "yes":
                 this.moreInfo = null;
-                console.format("--- Info Removed ---%n%n");
+                console.format("--- Assignment Info Removed ---%n%n");
                 break;
             case "n":
             case "no":
@@ -112,7 +112,7 @@ public class Assignment implements Serializable, Component, Comparable<Assignmen
         if (arg1.compareToIgnoreCase("info") == 0) {
             this.moreInfo = null;
         }
-        console.format("--- Info Removed ---%n%n");
+        console.format("--- Assignment Info Removed ---%n%n");
 
     }
 
