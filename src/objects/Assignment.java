@@ -28,7 +28,7 @@ public class Assignment implements Serializable, Component, Comparable<Assignmen
 
         this.parentCourse = caller;
 
-        console.format("--- Course Created ---%n%n");
+        console.format("--- Assignment Created ---%n%n");
 
     }
 
@@ -42,7 +42,7 @@ public class Assignment implements Serializable, Component, Comparable<Assignmen
         }
         this.assignmentType = assignmentType;
         this.parentCourse = caller;
-        console.format("--- Course Created ---%n%n");
+        console.format("--- Assignment Created ---%n%n");
 
     }
 
