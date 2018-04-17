@@ -138,7 +138,7 @@ class Course implements Serializable, Component, Comparable<Course> {
     @Override
     public void remove(String arg1, String arg2, Console console) throws ComponentDoesNotExistException, ImproperFormatException {
 
-        console.format("--- Removing %s ---", arg1);
+        console.format("--- Removing %s ---%n", arg1);
         int rmDate;
         String rmMonth;
 
@@ -205,7 +205,7 @@ class Course implements Serializable, Component, Comparable<Course> {
     @Override
     public Component open(String arg1, String arg2, Console console) throws ImproperFormatException, ComponentDoesNotExistException {
 
-        console.format("--- Opening %s ---", arg1);
+        console.format("--- Opening %s ---%n", arg1);
         int opDate;
         String opMonth;
 
