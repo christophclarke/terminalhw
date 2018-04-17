@@ -18,7 +18,7 @@ public interface Component {
 
     Component open(Console console) throws ComponentDoesNotExistException, ImproperFormatException;
 
-    Component open(String arg1, String arg2) throws ComponentDoesNotExistException, ImproperFormatException;
+    Component open(String arg1, String arg2, Console console) throws ComponentDoesNotExistException, ImproperFormatException;
 
     Component out();
 

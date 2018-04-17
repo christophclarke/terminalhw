@@ -107,12 +107,12 @@ public class Student implements Serializable, Component {
         String termString = console.readLine("Semester Term > ").trim();
         String yearString = console.readLine("Semester Year > ").trim();
 
-        return open(termString, yearString);
+        return open(termString, yearString, console);
 
     }
 
     @Override
-    public Component open(String arg1, String arg2) throws ComponentDoesNotExistException, ImproperFormatException {
+    public Component open(String arg1, String arg2, Console console) throws ComponentDoesNotExistException, ImproperFormatException {
 
         int year;
 

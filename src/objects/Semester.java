@@ -151,12 +151,12 @@ public class Semester implements Serializable, Component, Comparable<Semester> {
         String deptString = console.readLine("Semester Term > ").trim();
         String classNumString = console.readLine("Semester Year > ").trim();
 
-        return open(deptString, classNumString);
+        return open(deptString, classNumString, console);
 
     }
 
     @Override
-    public Component open(String arg1, String arg2) throws ComponentDoesNotExistException, ImproperFormatException {
+    public Component open(String arg1, String arg2, Console console) throws ComponentDoesNotExistException, ImproperFormatException {
 
         int classNum;
 
