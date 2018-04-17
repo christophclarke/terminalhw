@@ -175,8 +175,8 @@ class Course implements Serializable, Component, Comparable<Course> {
                 String rmType = console.readLine("Assignment Type > ").trim();
                 for (int i = 0; i < assignmentList.size(); i++) {
 
-                    if (assignmentList.get(i).getDueDay() == rmDate) {
-                        if (assignmentList.get(i).getDueMonth().equalsIgnoreCase(rmMonth)) {
+                    if (assignmentList.get(i).getDate() == rmDate) {
+                        if (assignmentList.get(i).getMonth().equalsIgnoreCase(rmMonth)) {
                             if (assignmentList.get(i).getAssignmentType().equalsIgnoreCase(rmType)) {
                                 assignmentList.remove(i);
                                 console.format("--- Assignment Removed ---%n");
@@ -235,8 +235,8 @@ class Course implements Serializable, Component, Comparable<Course> {
                 }
                 String opType = console.readLine("Assignment Type > ").trim();
                 for (Assignment assignment : assignmentList) {
-                    if (assignment.getDueMonth().compareToIgnoreCase(opMonth) == 0) {
-                        if (assignment.getDueDay() == opDate) {
+                    if (assignment.getMonth().compareToIgnoreCase(opMonth) == 0) {
+                        if (assignment.getDate() == opDate) {
                             if (assignment.getAssignmentType().compareToIgnoreCase(opType) == 0)
                                 return assignment;
                         }

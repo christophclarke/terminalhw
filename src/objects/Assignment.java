@@ -9,17 +9,17 @@ import java.io.Serializable;
 public class Assignment implements Serializable, Component, Comparable<Assignment> {
 
     private Course parentCourse;
-    private String dueMonth;
-    private int dueDay;
+    private String month;
+    private int date;
     private String assignmentType;
     private String moreInfo = null;
 
     Assignment(Console console, Course caller) throws ImproperFormatException {
 
         console.format("%n--- Creating Assignment ---%n");
-        this.dueMonth = console.readLine("Due Month > ").toLowerCase();
+        this.month = console.readLine("Due Month > ").toLowerCase();
         try {
-            this.dueDay = Integer.parseInt(console.readLine("Due Day > "));
+            this.date = Integer.parseInt(console.readLine("Due Day > "));
         } catch (NumberFormatException nfe) {
             throw new ImproperFormatException();
         }
@@ -32,11 +32,11 @@ public class Assignment implements Serializable, Component, Comparable<Assignmen
 
     }
 
-    Assignment(String dueMonth, String dueDay, String assignmentType, Console console, Course caller) throws ImproperFormatException {
+    Assignment(String month, String date, String assignmentType, Console console, Course caller) throws ImproperFormatException {
 
-        this.dueMonth = dueMonth;
+        this.month = month;
         try {
-            this.dueDay = Integer.parseInt(console.readLine(dueDay));
+            this.date = Integer.parseInt(console.readLine(date));
         } catch (NumberFormatException nfe) {
             throw new ImproperFormatException();
         }
@@ -49,9 +49,9 @@ public class Assignment implements Serializable, Component, Comparable<Assignmen
     @Override
     public int compareTo(Assignment that) {
         int diff;
-        diff = Utilities.monthStringToInt(dueMonth) - Utilities.monthStringToInt(that.dueMonth);
+        diff = Utilities.monthStringToInt(month) - Utilities.monthStringToInt(that.month);
         if (diff != 0) {return diff;}
-        diff = dueDay - that.dueDay;
+        diff = date - that.date;
         if (diff != 0) {return diff;}
         diff = assignmentType.compareToIgnoreCase(that.assignmentType);
         return diff;
@@ -62,7 +62,7 @@ public class Assignment implements Serializable, Component, Comparable<Assignmen
 
         console.format("Current Student: %s%n%n", parentCourse.parentSemester.parentStudent.toDisplayName());
         console.format("%s %s:%n%n", parentCourse.parentSemester.toDisplayName(), parentCourse.toDisplayName());
-        console.format("%s due %s %d", assignmentType, dueMonth, dueDay);
+        console.format("%s due %s %d", assignmentType, month, date);
         if (moreInfo != null) {
             console.format(moreInfo + "%n%n");
         }
@@ -133,15 +133,15 @@ public class Assignment implements Serializable, Component, Comparable<Assignmen
 
     @Override
     public String toDisplayName() {
-        return dueMonth + " " + dueDay + " " + assignmentType;
+        return month + " " + date + " " + assignmentType;
     }
 
-    public String getDueMonth() {
-        return dueMonth;
+    public String getMonth() {
+        return month;
     }
 
-    public int getDueDay() {
-        return dueDay;
+    public int getDate() {
+        return date;
     }
 
     public String getAssignmentType() {
