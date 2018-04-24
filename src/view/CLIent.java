@@ -11,13 +11,19 @@ import java.io.Console;
 import java.io.File;
 import java.io.IOException;
 
-class Client {
+class CLIent {
 
     private Component currentObj;
     private Console console;
     private File rootDir;
 
-    Client(Console consoleIn, File passedDir) {
+    CLIent(Console consoleIn, File passedDir) {
+
+        runCLI(consoleIn, passedDir);
+
+    }
+
+    private void runCLI(Console consoleIn, File passedDir) {
 
         console = consoleIn;
         rootDir = passedDir;
@@ -31,9 +37,9 @@ class Client {
         while (loop) {
 
             String[] input = console.readLine("(%s) How can I help? > ", currentObj.toDisplayName())
-                                                                                                    .toLowerCase()
-                                                                                                    .trim()
-                                                                                                    .split(" ");
+                    .toLowerCase()
+                    .trim()
+                    .split(" ");
             // Clear the screen
             clearScreen();
 

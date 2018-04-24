@@ -37,7 +37,7 @@ public class Entry {
 
         // Once system check is complete, initialize client
 
-        new Client(console, rootDir);
+        new CLIent(console, rootDir);
 
     }
 
