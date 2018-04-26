@@ -23,6 +23,13 @@ public class Student implements Serializable, Component {
 
     }
 
+    public Student(String[] nameArray) {
+
+        this.firstName = nameArray[0];
+        this.lastName = nameArray[1];
+
+    }
+
     public String toFileName() {
 
         return firstName + "_" + lastName + ".student";
@@ -45,6 +52,20 @@ public class Student implements Serializable, Component {
 
         }
 
+    }
+
+    @Override
+    public String render() {
+        StringBuilder sb = new StringBuilder();
+        if (semesterList.isEmpty()) {
+            sb.append("No Saved Semesters");
+            return sb.toString();
+        } else {
+            for (Semester sem : semesterList) {
+                sb.append(String.format("%n├%s", sem.toDisplayName()));
+            }
+            return sb.toString();
+        }
     }
 
     @Override
@@ -90,7 +111,7 @@ public class Student implements Serializable, Component {
             if (semesterList.get(i).getYear() == rmYear) {
                 if(semesterList.get(i).getTermString().equalsIgnoreCase(rmTerm)) {
                     semesterList.remove(i);
-                    console.format("--- Semester Removed ---%n");
+                    if (console != null) {console.format("--- Semester Removed ---%n");}
                     return;
                 }
             }

@@ -36,13 +36,13 @@ public class Exam implements Serializable, Component, Comparable<Exam> {
 
         this.month = month;
         try {
-            this.date = Integer.parseInt(console.readLine(date));
+            this.date = Integer.parseInt(date);
         } catch (NumberFormatException nfe) {
             throw new ImproperFormatException();
         }
         this.material = examMaterial;
         this.parentCourse = caller;
-        console.format("--- Exam Created ---%n%n");
+        if (console != null) {console.format("--- Exam Created ---%n%n");}
 
     }
 
@@ -65,6 +65,11 @@ public class Exam implements Serializable, Component, Comparable<Exam> {
             console.format(moreInfo + "%n%n");
         }
 
+    }
+
+    @Override
+    public String render() {
+        return null;
     }
 
     @Override

@@ -121,9 +121,14 @@ class CLIent {
                 case "help":
                     console.format("%n<<this is an interactive terminal application>>%n%n");
                     console.format("commands: %n%n");
+                    console.format("    'add': add a sub-component to the current component%n%n");
+                    console.format("    'remove': remove a sub-component from the current component%n%n");
+                    console.format("    'open': enter a sub-component%n%n");
+                    console.format("    'out': enter the parent of the current component%n%n");
                     console.format("    'show': shows data within current object%n%n");
                     console.format("    'quit': exits the application%n%n");
                     console.format("    'help': shows this prompt%n%n");
+
                     break;
 
                 case "quit":

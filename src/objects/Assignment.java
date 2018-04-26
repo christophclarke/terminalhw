@@ -36,13 +36,13 @@ public class Assignment implements Serializable, Component, Comparable<Assignmen
 
         this.month = month;
         try {
-            this.date = Integer.parseInt(console.readLine(date));
+            this.date = Integer.parseInt(date);
         } catch (NumberFormatException nfe) {
             throw new ImproperFormatException();
         }
         this.assignmentType = assignmentType;
         this.parentCourse = caller;
-        console.format("--- Assignment Created ---%n%n");
+        if (console != null) {console.format("--- Assignment Created ---%n%n");}
 
     }
 
@@ -67,6 +67,11 @@ public class Assignment implements Serializable, Component, Comparable<Assignmen
             console.format(moreInfo + "%n%n");
         }
 
+    }
+
+    @Override
+    public String render() {
+        return null;
     }
 
     @Override

@@ -2,12 +2,14 @@ package file;
 
 import objects.Student;
 
+import javax.swing.*;
+import java.awt.*;
 import java.io.Console;
 import java.io.File;
 
 public class Directory {
 
-    public static void initialize(Console console, File rootDir) {
+    public static void CLInitialize(Console console, File rootDir) {
 
         boolean loop = true;
 
@@ -51,4 +53,20 @@ public class Directory {
             }
         }
     }
+
+    public static void GUInitialize(String [] nameArray, File rootDir) {
+
+        try {
+            rootDir.mkdirs();
+        } catch (SecurityException se) {
+            JOptionPane.showMessageDialog(null, "Security Exception -> Check write permissions");
+            System.exit(77);
+        }
+
+        if (rootDir.exists()) {
+            Student currentStudent = new Student(nameArray);
+            ObjectPersistance.saveStudent(currentStudent, rootDir);
+        }
+    }
+
 }

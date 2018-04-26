@@ -48,8 +48,7 @@ public class Semester implements Serializable, Component, Comparable<Semester> {
         this.year = yearInt;
         this.courseList = new ArrayList<>();
         this.parentStudent = caller;
-        console.format("--- Semester Added ---%n%n");
-
+        if (console != null) {console.format("--- Semester Added ---%n%n");}
     }
 
     public String toDisplayName() {
@@ -72,7 +71,7 @@ public class Semester implements Serializable, Component, Comparable<Semester> {
 
     }
 
-    public int getYear() {
+    int getYear() {
         return year;
     }
 
@@ -92,6 +91,20 @@ public class Semester implements Serializable, Component, Comparable<Semester> {
 
         }
 
+    }
+
+    @Override
+    public String render() {
+        StringBuilder sb = new StringBuilder();
+        if (courseList.isEmpty()) {
+            sb.append("No Saved Courses");
+            return sb.toString();
+        } else {
+            for (Course course : courseList) {
+                sb.append(String.format("%n├%s", course.toDisplayName()));
+            }
+            return sb.toString();
+        }
     }
 
     @Override
@@ -135,7 +148,7 @@ public class Semester implements Serializable, Component, Comparable<Semester> {
             if (courseList.get(i).getCourseNumber() == rmNum) {
                 if(courseList.get(i).getDepartment().equalsIgnoreCase(arg1)) {
                     courseList.remove(i);
-                    console.format("--- Semester Removed ---%n");
+                    if (console != null) {console.format("--- Semester Removed ---%n");}
                     return;
                 }
             }

@@ -2,11 +2,14 @@ package objects;
 
 import exceptions.*;
 
+import javax.swing.*;
 import java.io.Console;
 
 public interface Component {
 
     void render(Console console);
+
+    String render();
 
     void add(Console console) throws ImproperFormatException;
 
