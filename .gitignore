@@ -21,3 +21,6 @@
 # IntelliJ #
 .idea/
 *.iml
+out/production/terminalhw/manifest.txt
+out/production/terminalhw/terminalhw
+src/basicgraphics/*
